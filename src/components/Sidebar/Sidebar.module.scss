@@ -1,0 +1,257 @@
+.siteSidebar {
+  width: 260px;
+  padding: 1.6rem 1.4rem;
+}
+
+.brand {
+  margin-bottom: 2rem;
+  color: var(--text-white);
+  font-size: 1.6rem;
+  font-family: var(--font-sora);
+  padding: 0 1rem;
+}
+
+/* Tree styles */
+.tree {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 600px; /* large enough for content when open */
+  overflow: hidden;
+  opacity: 1;
+  transition:
+    max-height 260ms ease,
+    opacity 180ms ease;
+}
+
+.tree > li {
+  padding: 0.25rem 0;
+  margin-bottom: 0.1rem;
+}
+.tree > li:last-child {
+  margin-bottom: 0;
+}
+.tree > li > ul {
+  margin-left: 1rem;
+  padding-left: 0.5rem;
+  border-left: 1px dashed rgba(0, 0, 0, 0.08);
+}
+
+/* Animate child items when opening/closing */
+.tree li {
+  opacity: 0;
+  transform: translateY(-6px);
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease;
+}
+.tree:not(.collapsed) li {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* small stagger for up to 6 items */
+.tree:not(.collapsed) li:nth-child(1) {
+  transition-delay: 0ms;
+}
+.tree:not(.collapsed) li:nth-child(2) {
+  transition-delay: 35ms;
+}
+.tree:not(.collapsed) li:nth-child(3) {
+  transition-delay: 70ms;
+}
+.tree:not(.collapsed) li:nth-child(4) {
+  transition-delay: 105ms;
+}
+.tree:not(.collapsed) li:nth-child(5) {
+  transition-delay: 140ms;
+}
+.tree:not(.collapsed) li:nth-child(6) {
+  transition-delay: 175ms;
+}
+.tree.collapsed li {
+  transition-delay: 0ms;
+}
+
+/* Collapsible tree styles */
+.treeItem {
+  display: block;
+}
+
+.toggleButton {
+  font: inherit;
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  background: transparent;
+  border-radius: 0.6rem;
+  padding: 0.6rem 0.4rem 0.6rem 1.2rem;
+  width: 100%;
+  text-align: left;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  transition:
+    background-color 0.18s ease,
+    color 0.18s ease,
+    transform 0.12s ease;
+}
+
+.itemIcon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+.chev {
+  display: inline-block;
+  transform: rotate(-90deg);
+  transition: transform 0.18s ease;
+}
+.chevOpen {
+  display: inline-block;
+  transform: rotate(0deg);
+  transition: transform 0.18s ease;
+}
+.collapsed {
+  max-height: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+/* sub-item button styling: full-width hover area */
+.subItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  text-align: left;
+  padding: 0.6rem 1rem 0.6rem 1.8rem; /* larger left padding to appear nested */
+  font: inherit;
+  color: #737991;
+  background: transparent;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.18s ease,
+    color 0.18s ease,
+    transform 0.12s ease;
+}
+
+.subItem:hover:not(.active),
+.subItem:focus:not(.active) {
+  color: #fff;
+  outline: none;
+  transform: translateY(-1px);
+  /* glass tint on hover for non-active items (match top-level) */
+  background: rgba(255, 255, 255, 0.06);
+  -webkit-backdrop-filter: blur(6px) saturate(110%);
+  backdrop-filter: blur(6px) saturate(110%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 6px 18px rgba(124, 94, 233, 0.12);
+}
+
+/* Prevent parent hover from affecting sub-items: keep only non-active sub-items neutral unless hovered */
+.treeItem:hover .subItem:not(.active) {
+  background: transparent;
+  color: #737991;
+}
+
+/* Stronger specificity: subItem hover wins */
+/* Sub-item hover uses glass effect for non-active items; active sub-items remain purple */
+
+.subItem.active {
+  color: #fff;
+  outline: none;
+  background-color: #7c5ee9;
+  border: 1px solid rgba(124, 94, 233, 0.18);
+  box-shadow: 0 8px 20px rgba(124, 94, 233, 0.18);
+  text-decoration: none;
+}
+
+.siteSidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Top-level nav items only (exclude treeItem) */
+/* Top-level list items: remove padding and let the anchor fill the space */
+nav > ul > li {
+  color: #737991;
+  font-size: 1rem;
+  font-family: var(--font-manrope);
+  padding: 0;
+  border-radius: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+nav > ul > li:last-child {
+  margin-bottom: 0;
+}
+
+/* Make the anchor fill the li so the whole row is clickable */
+nav > ul > li > a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border-radius: 0.6rem;
+  color: #737991;
+  text-decoration: none;
+  transition:
+    background-color 0.18s ease,
+    color 0.18s ease,
+    transform 0.12s ease;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+}
+
+nav > ul > li > a:not(.active):hover {
+  color: #fff;
+  transition:
+    background-color 0.18s ease,
+    color 0.18s ease,
+    transform 0.12s ease;
+  background: rgba(255, 255, 255, 0.06);
+  -webkit-backdrop-filter: blur(6px) saturate(110%);
+  backdrop-filter: blur(6px) saturate(110%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 6px 18px rgba(124, 94, 233, 0.12);
+}
+
+/* Active link state */
+.active {
+  color: #fff;
+  outline: none;
+  background-color: #7c5ee9; /* keep purple when active */
+  border: 1px solid rgba(124, 94, 233, 0.18);
+  box-shadow: 0 8px 20px rgba(124, 94, 233, 0.18);
+}
+
+.toggleButton:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+  -webkit-backdrop-filter: blur(6px) saturate(110%);
+  backdrop-filter: blur(6px) saturate(110%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 6px 18px rgba(124, 94, 233, 0.12);
+}
+
+@media (max-width: 600px) {
+  .siteSidebar {
+    display: none;
+  }
+}
+
+/* Make sidebar sticky on larger screens */
+@media (min-width: 801px) {
+  .siteSidebar {
+    position: sticky;
+    top: 0.5rem;
+    align-self: flex-start;
+    overflow: auto;
+  }
+}
