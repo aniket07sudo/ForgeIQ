@@ -1,27 +1,73 @@
 import { Routes, Route } from "react-router-dom";
+import Login from "../pages/Auth/Login";
+import Signup from "../pages/Auth/Signup";
 import Home from "../pages/Home";
-import About from "../pages/About";
-import Dashboard from "../pages/Dashboard";
-import Projects from "../pages/Projects";
-import Breakdown from "../pages/Planning/Breakdown";
-import Estimate from "../pages/Planning/Estimate";
-import Sprint from "../pages/Sprint";
 import NotFound from "../pages/NotFound";
-import ReleaseNotes from "../pages/ReleaseNotes";
-import Integrations from "../pages/Integrations";
+
+import ProtectedRoute from "./ProtectedRoute";
+import ProtectedLayout from "../layouts/ProtectedLayout/ProtectedLayout";
+
+import navRoutes, { type NavItem } from "../config/navRoutes";
+import PublicRoute from "./PublicRoutes";
+
+function renderRoute(item: NavItem) {
+  const routes = [];
+
+  if (item.path && item.component) {
+    const C = item.component;
+
+    routes.push(
+      <Route
+        handle={{
+          subtext: "Aniket heading",
+        }}
+        key={item.key}
+        path={item.path}
+        element={<C />}
+      />,
+    );
+  }
+
+  if (item.children) {
+    item.children.forEach((c: any) => routes.push(...renderRoute(c)));
+  }
+
+  return routes;
+}
 
 export default function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/projects" element={<Projects />} />
-      <Route path="/planning/breakdown" element={<Breakdown />} />
-      <Route path="/planning/estimate" element={<Estimate />} />
-      <Route path="/sprint" element={<Sprint />} />
-      <Route path="/releaseNotes" element={<ReleaseNotes />} />
-      <Route path="/integrations" element={<Integrations />} />
+      {/* PUBLIC ROUTES */}
+      <Route
+        path="/login"
+        element={
+          <PublicRoute>
+            <Login />
+          </PublicRoute>
+        }
+      />
+      <Route
+        path="/signup"
+        element={
+          <PublicRoute>
+            <Signup />
+          </PublicRoute>
+        }
+      />
+
+      {/* PROTECTED ROUTES */}
+      <Route
+        element={
+          <ProtectedRoute>
+            <ProtectedLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route path="/" element={<Home />} />
+        {navRoutes.map((r) => renderRoute(r))}
+        <Route path="/planning/breakdown/generate" element={<Home />} />
+      </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

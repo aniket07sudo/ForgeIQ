@@ -1,0 +1,128 @@
+// SCSS tokens + exported CSS variables for use in components
+// Define SCSS variables (for use in other .scss files) and export matching CSS variables in :root
+
+// Spacing
+$space-xs: 4px;
+$space-sm: 8px;
+$space-md: 16px;
+$space-lg: 24px;
+$space-xl: 32px;
+$space-xxl: 48px;
+
+// Radii
+$radius-none: 0px;
+$radius-xs: 4px;
+$radius-sm: 6px;
+$radius-md: 8px;
+$radius-lg: 12px;
+$radius-pill: 9999px;
+
+// Typography
+$font-family-system: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans';
+$font-family-heading: Sora, $font-family-system;
+$font-family-ui: Manrope, $font-family-system;
+
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-base: 16px;
+$font-size-lg: 18px;
+$font-size-xl: 20px;
+$font-size-2xl: 24px;
+$font-size-3xl: 32px;
+$font-size-4xl: 40px;
+
+$line-height-tight: 1.1;
+$line-height-snug: 1.25;
+$line-height-normal: 1.5;
+
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Layout
+$layout-content-max-width: 1200px;
+$layout-container-padding: $space-md;
+$layout-sidebar-width: 260px;
+
+// Breakpoints
+$bp-xs: 420px;
+$bp-sm: 640px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1280px;
+
+// Sizes
+$size-icon-sm: 16px;
+$size-icon: 20px;
+$size-icon-lg: 24px;
+$control-height: 40px;
+
+// Export as CSS variables so plain CSS and JS can consume them
+:root {
+  /* Spacing */
+  --space-xs: #{$space-xs};
+  --space-sm: #{$space-sm};
+  --space-md: #{$space-md};
+  --space-lg: #{$space-lg};
+  --space-xl: #{$space-xl};
+  --space-xxl: #{$space-xxl};
+
+  /* Radii */
+  --radius-none: #{$radius-none};
+  --radius-xs: #{$radius-xs};
+  --radius-sm: #{$radius-sm};
+  --radius-md: #{$radius-md};
+  --radius-lg: #{$radius-lg};
+  --radius-pill: #{$radius-pill};
+
+  /* Typography */
+  --font-family-system: #{$font-family-system};
+  --font-family-heading: #{$font-family-heading};
+  --font-family-ui: #{$font-family-ui};
+
+  --font-size-xs: #{$font-size-xs};
+  --font-size-sm: #{$font-size-sm};
+  --font-size-base: #{$font-size-base};
+  --font-size-lg: #{$font-size-lg};
+  --font-size-xl: #{$font-size-xl};
+  --font-size-2xl: #{$font-size-2xl};
+  --font-size-3xl: #{$font-size-3xl};
+  --font-size-4xl: #{$font-size-4xl};
+
+  --line-height-tight: #{$line-height-tight};
+  --line-height-snug: #{$line-height-snug};
+  --line-height-normal: #{$line-height-normal};
+
+  --font-weight-regular: #{$font-weight-regular};
+  --font-weight-medium: #{$font-weight-medium};
+  --font-weight-semibold: #{$font-weight-semibold};
+  --font-weight-bold: #{$font-weight-bold};
+
+  /* Layout */
+  --layout-content-max-width: #{$layout-content-max-width};
+  --layout-container-padding: #{$layout-container-padding};
+  --layout-sidebar-width: #{$layout-sidebar-width};
+
+  /* Breakpoints */
+  --bp-xs: #{$bp-xs};
+  --bp-sm: #{$bp-sm};
+  --bp-md: #{$bp-md};
+  --bp-lg: #{$bp-lg};
+  --bp-xl: #{$bp-xl};
+
+  /* Sizes */
+  --size-icon-sm: #{$size-icon-sm};
+  --size-icon: #{$size-icon};
+  --size-icon-lg: #{$size-icon-lg};
+  --control-height: #{$control-height};
+}
+
+// Provide an easy `@mixin` for responsive helpers
+@mixin respond-to($break) {
+  @if $break == xs { @media (min-width: $bp-xs) { @content } }
+  @else if $break == sm { @media (min-width: $bp-sm) { @content } }
+  @else if $break == md { @media (min-width: $bp-md) { @content } }
+  @else if $break == lg { @media (min-width: $bp-lg) { @content } }
+  @else if $break == xl { @media (min-width: $bp-xl) { @content } }
+}

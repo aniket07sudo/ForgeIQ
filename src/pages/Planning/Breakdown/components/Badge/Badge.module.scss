@@ -1,0 +1,14 @@
+.badge {
+    display: inline-flex;
+    padding: 8px 12px;
+    gap: 8px;
+    border-radius: var(--radius-md);
+    font-size: 12px;
+    font-weight: 600;
+    font-family: var(--font-inter);
+    align-items: center;
+
+    & span {
+        color: var(--text-white-75);
+    }
+}

@@ -10,7 +10,7 @@ type Props = {
   className?: string
 }
 
-export default function Icon({ name, size = 18, alt, className }: Props){
+export default function Icon({ name, size = 20, alt, className }: Props){
   const src = icons[name]
   const cls = [styles.icon, className].filter(Boolean).join(' ')
   return <img src={src} alt={alt ?? name} width={size} height={size} className={cls} />

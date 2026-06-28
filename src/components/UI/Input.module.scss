@@ -1,0 +1,86 @@
+.input {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+.field {
+  display: block;
+  width: 100%;
+  height: var(--control-height);
+  padding: 0 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--text-white);
+  font-family: var(--font-family-system);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  box-sizing: border-box;
+  margin-bottom: 0.4rem;
+}
+
+.hasCaret .field {
+  padding-right: 36px;
+}
+
+.caret {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transition: transform 0.15s ease;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.caret.open {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.focus {
+  outline: none;
+  box-shadow: 0 8px 30px rgba(10, 10, 10, 0.6);
+  border-color: rgba(125, 70, 255, 0.9);
+}
+
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.small {
+  padding: 6px 8px;
+  font-size: var(--font-size-sm);
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-white-75);
+  margin-bottom: 0.2rem;
+}
+
+.subLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-white-60);
+  margin-bottom: 0.2rem;
+}
+
+.helperText {
+  font-size: 14px;
+  color: var(--text-white-60);
+  padding: 0 0.2rem;
+}

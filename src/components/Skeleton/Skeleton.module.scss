@@ -1,0 +1,78 @@
+/* Skeleton.module.scss */
+
+.skeleton {
+  padding: 24px;
+  border-radius: 16px;
+}
+
+/* HEADER */
+.header {
+  height: 28px;
+  width: 220px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(139, 92, 246, 0.12),
+    rgba(255, 255, 255, 0.06)
+  );
+
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite linear;
+}
+
+/* SUMMARY */
+.summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.card {
+  height: 90px;
+  border-radius: 14px;
+
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04),
+    rgba(139, 92, 246, 0.1),
+    rgba(255, 255, 255, 0.04)
+  );
+
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite linear;
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ROWS */
+.row {
+  height: 42px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(139, 92, 246, 0.08),
+    rgba(255, 255, 255, 0.03)
+  );
+
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite linear;
+
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* SHIMMER */
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

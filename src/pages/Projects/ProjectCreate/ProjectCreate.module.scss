@@ -1,0 +1,120 @@
+.breakdownContainer {
+  padding: 2rem 1rem 1rem 1rem;
+  overflow: scroll;
+  max-height: calc(100vh - 208px);
+
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.titleInput {
+  background-color: rgba(12, 18, 40, 0.55);
+}
+
+.contextLabelWrapper {
+  color: var(--text-white-75);
+
+  & span {
+    color: var(--text-white-60);
+  }
+}
+
+.actionGroup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.selectprojects {
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+.projectCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0;
+}
+
+.projectTitle {
+  display: flex;
+  flex-direction: column;
+
+  & .projectKey {
+    font-size: 14px;
+    color: var(--text-white-75);
+  }
+}
+
+.projectSelected {
+  border: 1px solid red;
+}
+
+.successStep {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.6rem;
+
+  & h2 {
+    font-size: 1.4rem;
+  }
+}
+
+.connectionSummary {
+  padding: 1rem;
+
+  & h3 {
+    font-size: 16px;
+    margin-bottom: 1rem;
+  }
+}
+
+.dataGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  color: white;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(200px, 0.7fr) 1fr;
+  align-items: center;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.key {
+  color: var(--text-white-60);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.value {
+  color: var(--text-white-75);
+  font-size: 14px;
+}

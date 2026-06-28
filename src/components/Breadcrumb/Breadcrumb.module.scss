@@ -1,0 +1,33 @@
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  
+  & span {
+    text-transform: capitalize;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    position: relative;
+    font-family: var(--font-inter);
+
+    & a {
+      text-decoration: none;
+      color: var(--text-white-75);
+    }
+
+    &:not(:last-child) {
+      margin-right: calc(1rem + 4px); // space after dot
+    }
+
+    &:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background-color: #5b6178;
+      margin: 0 0.5rem;
+    }
+  }
+}

@@ -1,0 +1,56 @@
+.breakdownCard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-bottom: 1rem;
+}
+
+.breakdownItem {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  padding: 1rem;
+
+  &:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    width: 1px;
+    height: 100%;
+
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  span {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-white);
+    font-family: var(--font-inter);
+  }
+
+  p {
+    font-size: 14px;
+    color: var(--text-white-75);
+  }
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: var(--radius-md);
+}
+
+.breakdownItemContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}

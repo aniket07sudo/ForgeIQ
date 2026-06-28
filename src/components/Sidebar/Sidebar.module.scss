@@ -1,27 +1,65 @@
 .siteSidebar {
-  width: 260px;
-  padding: 1.6rem 1.4rem;
+  padding: 1.6rem 0 1.6rem 1.4rem;
 }
 
-.brand {
-  margin-bottom: 2rem;
-  color: var(--text-white);
-  font-size: 1.6rem;
-  font-family: var(--font-sora);
+.logoSection {
+  display: flex;
+}
+
+.brandLogo {
+  margin-bottom: 1.25rem;
   padding: 0 1rem;
 }
 
-/* Tree styles */
-.tree {
-  list-style: none;
-  padding: 0;
+.brandLogo img {
+  display: block;
+  width: 40px;
+  height: auto;
+}
+
+.logoSection h1 {
+  color: var(--text-white);
+  font-size: 1.225rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.logoSection p {
+  color: #495467;
+  font-weight: 500;
+  letter-spacing: 2px;
   margin: 0;
-  max-height: 600px; /* large enough for content when open */
-  overflow: hidden;
-  opacity: 1;
-  transition:
-    max-height 260ms ease,
-    opacity 180ms ease;
+}
+
+.logoText {
+  
+  & p {
+    font-weight: 500;
+    font-size: 0.7rem;
+  }
+}
+
+.chev,
+.chevOpen {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  transform-origin: center center;
+  will-change: transform;
+  backface-visibility: hidden;
+  transition: transform 0.18s ease;
+}
+.chev {
+  transform: translateY(-50%) rotate(0deg);
+}
+.chevOpen {
+  transform: translateY(-50%) rotate(90deg);
 }
 
 .tree > li {
@@ -80,13 +118,14 @@
 .toggleButton {
   font: inherit;
   color: inherit;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0.5rem;
+  position: relative;
   cursor: pointer;
   background: transparent;
   border-radius: 0.6rem;
-  padding: 0.6rem 0.4rem 0.6rem 1.2rem;
+  padding: 0.6rem 1.6rem 0.6rem 1.2rem;
   width: 100%;
   text-align: left;
   border: 1px solid transparent;
@@ -102,15 +141,32 @@
   display: inline-block;
   vertical-align: middle;
 }
+
 .chev {
-  display: inline-block;
-  transform: rotate(-90deg);
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  transform-origin: center;
   transition: transform 0.18s ease;
 }
 .chevOpen {
-  display: inline-block;
-  transform: rotate(0deg);
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%) rotate(180deg);
+  transform-origin: center;
   transition: transform 0.18s ease;
+}
+
+.chevIcon {
+  display: block;
+  width: 14px;
+  height: 14px;
+}
+
+.label {
+  flex: 0 1 auto;
 }
 .collapsed {
   max-height: 0 !important;
@@ -125,7 +181,7 @@
   gap: 0.5rem;
   width: 100%;
   text-align: left;
-  padding: 0.6rem 1rem 0.6rem 1.8rem; /* larger left padding to appear nested */
+  padding: 0.6rem 1rem 0.6rem 2.6rem; /* larger left padding to appear nested */
   font: inherit;
   color: #737991;
   background: transparent;
@@ -175,6 +231,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  grid-column: 1 / 2;
 }
 
 /* Top-level nav items only (exclude treeItem) */

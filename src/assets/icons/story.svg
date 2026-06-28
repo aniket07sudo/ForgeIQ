@@ -1,0 +1,50 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  width="24"
+  height="24"
+  fill="none"
+>
+  <!-- Frame -->
+  <path
+    d="M5 4h10a2 2 0 0 1 2 2v4"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <path
+    d="M5 4v14a2 2 0 0 0 2 2h4"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Story node -->
+  <circle
+    cx="10"
+    cy="11"
+    r="2.2"
+    stroke="currentColor"
+    stroke-width="2"
+  />
+
+  <path
+    d="M12.2 11H15"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+  />
+
+  <!-- Secondary node -->
+  <path
+    d="M16.5 15.5
+       a2.5 2.5 0 1 0 0 5
+       a2.5 2.5 0 1 0 0-5z"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linejoin="round"
+  />
+</svg>

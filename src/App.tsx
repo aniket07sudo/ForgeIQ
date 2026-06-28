@@ -1,15 +1,20 @@
-import styles from "./App.module.scss";
-import Sidebar from "./components/Sidebar/Sidebar";
 import AppRoutes from "./routes/AppRoutes";
+import styles from "./App.module.scss";
+import { AuthProvider } from "./context/AuthContext";
+import { ModalProvider } from "./components/Modal/ModalProvider";
+import { ToastProvider } from "./components/toast/ToastProvider";
 
 function App() {
   return (
-    <div className={styles.App}>
-      <div className={styles.contentArea}>
-        <Sidebar />
-        <AppRoutes />
-      </div>
-    </div>
+    <AuthProvider>
+      <ModalProvider>
+        <ToastProvider>
+          <div className={styles.App}>
+            <AppRoutes />
+          </div>
+        </ToastProvider>
+      </ModalProvider>
+    </AuthProvider>
   );
 }
 

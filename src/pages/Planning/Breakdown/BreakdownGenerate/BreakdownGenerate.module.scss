@@ -1,0 +1,152 @@
+.breakdownContainer {
+  padding: 2rem 1rem 1rem 1rem;
+  overflow: scroll;
+  max-height: calc(100vh - 208px - 138px);
+
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.titleInput {
+  background-color: rgba(12, 18, 40, 0.55);
+}
+
+.contextLabelWrapper {
+  color: var(--text-white-75);
+
+  & span {
+    color: var(--text-white-60);
+  }
+}
+
+footer {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0 0 0;
+}
+
+.actionGroup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.publishDetailsContainer {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  position: relative;
+}
+
+.publishDetails {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-bottom: 1rem;
+}
+
+.jiraProject {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  h4 {
+    font-size: 16px;
+  }
+  p {
+    font-size: 14px;
+  }
+  span {
+    color: var(--text-white-75);
+  }
+}
+
+.infoBox {
+  padding: 0.6rem 1rem;
+  background-color: rgba(64, 148, 255, 0.12);
+  font-size: 14px;
+  color: var(--text-white-75);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: var(--radius-md);
+
+  .infoIcon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .infoUrl {
+    color: rgb(64, 148, 255);
+  }
+}
+
+.jiraConnection {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.connectionStatus {
+  display: flex;
+  flex-direction: column;
+
+  & h4 {
+    font-size: 14px;
+  }
+}
+
+.externalLink {
+  text-decoration: none;
+  color: var(--text-white-75);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.8rem;
+}
+
+.editDetails {
+  position: absolute;
+  right: 1rem;
+}
+
+.changeButton {
+  font-size: 14px;
+}
+
+.jiraProjectOption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 1rem;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: var(--radius-sm);
+
+  &.jiraProjectSelected {
+    border: 1px solid var(--primary-color);
+  }
+
+  .leftAlign {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .jiraProjectOptionContent {
+    h3 {
+      color: var(--text-white-75);
+    }
+    & p {
+      font-size: 14px;
+      color: var(--text-white-60);
+    }
+  }
+}

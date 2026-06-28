@@ -1,0 +1,54 @@
+.textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 12px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  color: var(--text-white);
+  resize: vertical;
+  font-family: var(--font-family-system);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+
+  background: rgba(12, 18, 40, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 0 40px rgba(99, 102, 241, 0.08);
+  overflow: hidden;
+}
+
+.primary {
+  box-shadow: none;
+}
+
+.secondary {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+}
+
+.focus {
+  outline: none;
+  box-shadow: 0 6px 20px rgba(10, 10, 10, 0.6);
+  border-color: rgba(125, 70, 255, 0.9);
+}
+
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-white-75);
+}

@@ -1,144 +1,119 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./Sidebar.module.scss";
+import logoUrl from "../../assets/images/logo.png";
 import Icon from "../Icon";
+import navRoutes from "../../config/navRoutes";
 
 export default function Sidebar() {
-  const [open, setOpen] = useState(true);
+  const [openKeys, setOpenKeys] = useState<Record<string, boolean>>({
+    planning: true,
+  });
+
+  function toggle(key: string) {
+    setOpenKeys((s) => ({ ...s, [key]: !s[key] }));
+  }
 
   return (
     <aside className={styles.siteSidebar}>
-      <div className={styles.brand}>ForgeIQ</div>
+      <div className={styles.logoSection}>
+        <div className={styles.brandLogo}>
+          <img src={logoUrl} alt="ForgeIQ Logo" />
+        </div>
+        <div className={styles.logoText}>
+          <h1>ForgeIQ</h1>
+          <p>SPRINT COPILOT</p>
+        </div>
+      </div>
       <nav>
         <ul>
-          <li>
-            <NavLink
-              to="/dashboard"
-              className={({ isActive }) => (isActive ? styles.active : "")}
+          {navRoutes.map((item) => (
+            <li
+              key={item.key}
+              className={item.children ? styles.treeItem : undefined}
             >
-              <Icon
-                name="dashboard"
-                size={16}
-                className={styles.itemIcon}
-                alt="dashboard"
-              />
-              <span>Dashboard</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/projects"
-              className={({ isActive }) => (isActive ? styles.active : "")}
-            >
-              <Icon
-                name="projects"
-                size={16}
-                className={styles.itemIcon}
-                alt="projects"
-              />
-              <span>Projects</span>
-            </NavLink>
-          </li>
-          <li className={styles.treeItem}>
-            <button
-              type="button"
-              aria-expanded={open}
-              aria-controls="planning-sub"
-              className={styles.toggleButton}
-              onClick={() => setOpen((s) => !s)}
-            >
-              <Icon
-                name="planning"
-                size={16}
-                className={styles.itemIcon}
-                alt="planning"
-              />
-              <span
-                className={open ? styles.chevOpen : styles.chev}
-                aria-hidden
-              >
-                <Icon
-                  name="chevron"
-                  size={14}
-                  className={open ? styles.chevOpen : styles.chev}
-                  alt="chev"
-                />
-              </span>
-              <span>Planning</span>
-            </button>
-            <ul
-              id="planning-sub"
-              className={`${styles.tree} ${!open ? styles.collapsed : ""}`}
-              aria-hidden={!open}
-            >
-              <li>
+              {!item.children ? (
                 <NavLink
-                  to="/planning/breakdown"
-                  className={({ isActive }) =>
-                    isActive
-                      ? `${styles.subItem} ${styles.active}`
-                      : styles.subItem
-                  }
+                  to={item.path ?? "#"}
+                  className={({ isActive }) => (isActive ? styles.active : "")}
                 >
-                  Story Breakdown
+                  {item.icon && (
+                    <Icon
+                      name={item.icon as any}
+                      size={16}
+                      className={styles.itemIcon}
+                      alt={item.icon}
+                    />
+                  )}
+                  <span>{item.label}</span>
                 </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/planning/estimate"
-                  className={({ isActive }) =>
-                    isActive
-                      ? `${styles.subItem} ${styles.active}`
-                      : styles.subItem
-                  }
-                >
-                  Estimation
-                </NavLink>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <NavLink
-              to="/sprint"
-              className={({ isActive }) => (isActive ? styles.active : "")}
-            >
-              <Icon
-                name="sprint"
-                size={16}
-                className={styles.itemIcon}
-                alt="sprint"
-              />
-              <span>Sprint IQ</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/releaseNotes"
-              className={({ isActive }) => (isActive ? styles.active : "")}
-            >
-              <Icon
-                name="releaseNotes"
-                size={16}
-                className={styles.itemIcon}
-                alt="release notes"
-              />
-              <span>Release Notes</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/integrations"
-              className={({ isActive }) => (isActive ? styles.active : "")}
-            >
-              <Icon
-                name="integrations"
-                size={16}
-                className={styles.itemIcon}
-                alt="integrations"
-              />
-              <span>Integrations</span>
-            </NavLink>
-          </li>
+              ) : (
+                <>
+                  <button
+                    type="button"
+                    aria-expanded={!!openKeys[item.key]}
+                    aria-controls={`${item.key}-sub`}
+                    className={styles.toggleButton}
+                    onClick={() => toggle(item.key)}
+                  >
+                    {item.icon && (
+                      <Icon
+                        name={item.icon as any}
+                        size={16}
+                        className={styles.itemIcon}
+                        alt={item.icon}
+                      />
+                    )}
+                    <span className={styles.label}>{item.label}</span>
+                    <span
+                      className={
+                        openKeys[item.key] ? styles.chevOpen : styles.chev
+                      }
+                      aria-hidden
+                    >
+                      <Icon
+                        name="chevron"
+                        size={14}
+                        className={styles.chevIcon}
+                        alt="chev"
+                      />
+                    </span>
+                  </button>
+
+                  <ul
+                    id={`${item.key}-sub`}
+                    className={`${styles.tree} ${!openKeys[item.key] ? styles.collapsed : ""}`}
+                    aria-hidden={!openKeys[item.key]}
+                  >
+                    {item.children
+                      ?.filter((item) => !item.hidden)
+                      .map((c) => (
+                        <li key={c.key}>
+                          <NavLink
+                            to={c.path ?? "#"}
+                            className={({ isActive }) =>
+                              isActive
+                                ? `${styles.subItem} ${styles.active}`
+                                : styles.subItem
+                            }
+                          >
+                            {c.icon && (
+                              <Icon
+                                name={c.icon as any}
+                                size={14}
+                                className={styles.itemIcon}
+                                alt={c.icon}
+                              />
+                            )}
+                            <span>{c.label}</span>
+                          </NavLink>
+                        </li>
+                      ))}
+                  </ul>
+                </>
+              )}
+            </li>
+          ))}
         </ul>
       </nav>
     </aside>
