@@ -1,5 +1,5 @@
 import { Button, Card } from "../../../../components/UI";
-import { Modal, useModal } from "../../../../components";
+import { Modal, useModal, useToast } from "../../../../components";
 import { useWizard } from "../Wizard/context";
 import { useCallback, useEffect, useState } from "react";
 import SvgIcon from "../../../../components/Icon/SvgIcon";
@@ -17,6 +17,7 @@ export const DoneStep = () => {
   const [info, setInfo] = useState<ProjectStatusResponse | null>(null);
   const { closeModal } = useModal();
   const navigate = useNavigate();
+  const toast = useToast();
 
   useEffect(() => {
     setFooter(
@@ -40,10 +41,9 @@ export const DoneStep = () => {
   const loadProjects = useCallback(async () => {
     try {
       const response = await getProjectStatus(data.projectId);
-
       setInfo(response);
     } catch (error) {
-      console.error("Failed to load Jira projects", error);
+      toast.error("Something went wrong");
     } finally {
     }
   }, [data.projectId]);

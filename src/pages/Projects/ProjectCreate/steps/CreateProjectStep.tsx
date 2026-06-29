@@ -2,7 +2,7 @@ import { useEffect, useState, type ChangeEvent } from "react";
 import { createProjects } from "../../../../api/project/project.api";
 import { Button, Input, TextArea } from "../../../../components/UI";
 import styles from "../ProjectCreate.module.scss";
-import { Modal, useModal } from "../../../../components";
+import { Modal, useModal, useToast } from "../../../../components";
 import { useWizard } from "../Wizard/context";
 import Loader from "../../../../assets/loader/loader";
 
@@ -24,6 +24,7 @@ export const CreateProjectStep = () => {
   const [formData, setFormData] = useState<FormData>(INITIAL_FORM);
   const { setFooter, next, setData } = useWizard<ProjectId>();
   const { closeModal } = useModal();
+  const toast = useToast();
 
   useEffect(() => {
     setFooter(
@@ -67,6 +68,7 @@ export const CreateProjectStep = () => {
       next();
     } catch (error) {
       console.error("Failed to generate project", error);
+      toast.error("Something went wrong");
     } finally {
       setIsSubmitting(false);
     }

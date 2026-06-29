@@ -100,6 +100,7 @@ export const BreakdownGenerate = () => {
 
       navigate(`/planning/breakdown/${breakdownId}`);
     } catch (error) {
+      toast.error("Something went wrong");
       console.error("Failed to generate breakdown", error);
     } finally {
       setIsSubmitting(false);
@@ -118,6 +119,7 @@ export const BreakdownGenerate = () => {
       });
       toast.success("Draft created successfully");
     } catch (error) {
+      toast.error("Something went wrong");
       console.error("Failed to generate breakdown", error);
     } finally {
       setSaveDraftLoading(false);
@@ -129,6 +131,7 @@ export const BreakdownGenerate = () => {
       const response = await getProjects();
       setProjects(response);
     } catch (error) {
+      toast.error("Something went wrong");
       console.error("Failed to load Jira projects", error);
     } finally {
     }
@@ -137,6 +140,8 @@ export const BreakdownGenerate = () => {
   useEffect(() => {
     loadProjects();
   }, []);
+
+  console.log("currentProject", currentProject);
 
   return (
     <Fragment>
@@ -245,7 +250,8 @@ export const BreakdownGenerate = () => {
             <div className={styles.actionGroup}>
               <Button
                 disabled={
-                  !formData.title.trim() || saveDraftLoading || isSubmitting
+                  !!currentProject?.jiraConnection &&
+                  (!formData.title.trim() || saveDraftLoading || isSubmitting)
                 }
                 variant="ghost"
                 onClick={submitDraft}
@@ -256,7 +262,10 @@ export const BreakdownGenerate = () => {
               <Button
                 type="submit"
                 variant="solid"
-                disabled={!formData.title.trim() || isSubmitting}
+                disabled={
+                  !!currentProject?.jiraConnection &&
+                  (!formData.title.trim() || isSubmitting)
+                }
               >
                 {isSubmitting ? <Loader /> : <Icon name="breakdown" />} Generate
                 Breakdown

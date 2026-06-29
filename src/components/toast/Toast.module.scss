@@ -12,7 +12,7 @@
   z-index: 9999;
 
   pointer-events: none;
-  animation: toastIn 280ms ease forwards;
+  animation: toastIn 340ms ease forwards;
 }
 
 .toast {
@@ -90,7 +90,7 @@
 }
 
 .toastClosing {
-  animation: toastOut 280ms ease forwards;
+  animation: toastOut 340ms ease forwards;
 }
 
 @keyframes toastIn {

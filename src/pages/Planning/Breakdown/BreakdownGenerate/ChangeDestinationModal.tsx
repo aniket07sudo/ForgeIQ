@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { Modal, useModal } from "../../../../components";
+import { Modal, useModal, useToast } from "../../../../components";
 import { Button } from "../../../../components/UI";
 import {
   getProjects,
@@ -10,7 +10,7 @@ import styles from "./BreakdownGenerate.module.scss";
 import Checkbox from "../../../../components/Checkbox/Checkbox";
 
 interface ChangeDestinationModalProps {
-  defaultSelected?: ProjectDto |  null;
+  defaultSelected?: ProjectDto | null;
   onSelect: (project: ProjectDto) => void;
 }
 
@@ -23,12 +23,14 @@ export const ChangeDestination = ({
   const [selectedProject, setSelectedProject] = useState<ProjectDto | null>(
     defaultSelected ?? null,
   );
+  const toast = useToast();
 
   const loadProjects = useCallback(async () => {
     try {
       const response = await getProjects();
       setProjects(response);
     } catch (error) {
+      toast.error("Something went wrong");
       console.error("Failed to load Jira projects", error);
     } finally {
     }

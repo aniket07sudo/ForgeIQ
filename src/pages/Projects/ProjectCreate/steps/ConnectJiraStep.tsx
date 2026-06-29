@@ -1,5 +1,5 @@
 import { useEffect, useState, type ChangeEvent } from "react";
-import { Modal } from "../../../../components";
+import { Modal, useToast } from "../../../../components";
 import { useWizard } from "../Wizard/context";
 import { Button, Input } from "../../../../components/UI";
 import styles from "../ProjectCreate.module.scss";
@@ -20,6 +20,7 @@ const InitialForm = {
 export const ConnectJiraStep = () => {
   const [form, setForm] = useState<JiraConnectionForm>(InitialForm);
   const { setFooter, next, prev, data } = useWizard<{ projectId: string }>();
+  const toast = useToast();
 
   useEffect(() => {
     setFooter(
@@ -57,6 +58,7 @@ export const ConnectJiraStep = () => {
       next();
     } catch (error) {
       console.error("Failed to generate project", error);
+      toast.error("Something went wrong");
     } finally {
       // setIsSubmitting(false);
     }

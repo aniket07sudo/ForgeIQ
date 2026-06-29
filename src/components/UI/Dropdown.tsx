@@ -188,7 +188,7 @@ export function Dropdown({
     try {
       triggerRef.current?.blur();
     } catch (e) {
-      // ignore
+      // 
     }
   }
 

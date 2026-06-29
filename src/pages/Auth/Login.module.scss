@@ -12,8 +12,8 @@
   width: 420px;
   border-radius: 12px;
   padding: 2rem;
-  box-shadow: 0 12px 40px rgba(2,6,23,0.6);
-  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 12px 40px rgba(2, 6, 23, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .brand {
@@ -22,10 +22,41 @@
   gap: 0.75rem;
   margin-bottom: 1.25rem;
 }
-.brand img { width: 40px; height: auto; display: block }
-.brand h1 { margin: 0; font-size: 1.25rem }
+.brand img {
+  width: 40px;
+  height: auto;
+  display: block;
+}
+.brand h1 {
+  margin: 0;
+  font-size: 1.25rem;
+}
 
-.form { display: flex; flex-direction: column; gap: 0.75rem }
-.label { display: flex; flex-direction: column; gap: 0.4rem; color: var(--text-white-75); font-size: 0.875rem }
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  color: var(--text-white-75);
+  font-size: 0.875rem;
+}
 
-.actions { display: flex; justify-content: flex-end; margin-top: 0.5rem }
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+.signup {
+  color: var(--text-white-75);
+  word-break: normal;
+  
+  & a {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+}

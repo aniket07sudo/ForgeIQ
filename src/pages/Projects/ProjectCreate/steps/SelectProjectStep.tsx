@@ -1,5 +1,5 @@
 import { Button } from "../../../../components/UI";
-import { Modal } from "../../../../components";
+import { Modal, useToast } from "../../../../components";
 import { useWizard } from "../Wizard/context";
 import { useCallback, useEffect, useState } from "react";
 import styles from "../ProjectCreate.module.scss";
@@ -16,6 +16,7 @@ export const SelectProjectStep = () => {
   const { setFooter, prev, data, next } = useWizard<{ projectId: string }>();
   const [projects, setProjects] = useState<JiraProjectResponseDto[]>();
   const [isConnecting, setIsConnecting] = useState(false);
+  const toast = useToast();
 
   const [selectedProject, setSelectedProject] =
     useState<JiraProjectResponseDto | null>(null);
@@ -47,15 +48,13 @@ export const SelectProjectStep = () => {
       await selectJiraProject(parseInt(data.projectId), {
         projectId: data.projectId,
         projectKey: selectedProject.key,
-        projectName: selectedProject.name
+        projectName: selectedProject.name,
       });
 
       next();
     } catch (error) {
       console.error("Failed to connect Jira project", error);
-
-      // TODO:
-      // showErrorToast("Unable to connect Jira project.");
+      toast.error("Something went wrong");
     } finally {
       setIsConnecting(false);
     }
@@ -69,6 +68,7 @@ export const SelectProjectStep = () => {
 
       setProjects(response);
     } catch (error) {
+      toast.error("Something went wrong");
       console.error("Failed to load Jira projects", error);
     } finally {
     }

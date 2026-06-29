@@ -11,7 +11,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const { login } = useAuth();
 
-  const toast = useToast()
+  const toast = useToast();
 
   const navigate = useNavigate();
   async function onSubmit(e: React.FormEvent) {
@@ -20,7 +20,7 @@ export default function Login() {
       await login(email, password);
       navigate("/");
     } catch (err) {
-      toast.error("AAA")
+      toast.error("Something went wrong");
     }
   }
 
@@ -53,7 +53,8 @@ export default function Login() {
           </label>
           <div className={styles.actions}>
             <div className={styles.signup}>
-              Don't have an account? <Link to="/signup">Create one</Link>
+              Don't have an account? <br />
+              <Link to="/signup">Create one</Link>
             </div>
             <Button variant="primary" type="submit">
               Sign in

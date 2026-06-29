@@ -1,4 +1,4 @@
-import type { ProjectDto } from "../../api/project/project.api";
+import type { ProjectDto, ProjectStatus } from "../../api/project/project.api";
 import { Table, useModal, useTable, type Column } from "../../components";
 import { formateDate } from "../../utils/formateDate";
 import styles from "./ProjectDashboard.module.scss";
@@ -11,6 +11,16 @@ import SvgIcon from "../../components/Icon/SvgIcon";
 
 interface Props {
   data: ProjectDto[];
+}
+
+const getProjectStep = (status:ProjectStatus) : number => {
+  if(status == "CONNECT_JIRA") {
+    return 1;
+  }
+  if(status == "READY") {
+    return 3;
+  }
+  return 2;
 }
 
 export const ProjectDashboard = ({ data }: Props) => {
@@ -34,7 +44,7 @@ export const ProjectDashboard = ({ data }: Props) => {
             className={styles.configureStatus}
             onClick={() =>
               openModal(ProjectCreateWizard, {
-                initialStep: row.status == "READY" ? 3 : 2,
+                initialStep: getProjectStep(row.status),
                 initialData: {
                   projectId: row.id.toString(),
                 },

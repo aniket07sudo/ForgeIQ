@@ -8,7 +8,7 @@ import styles from "./Breakdown.module.scss";
 import { MetadataCard } from "../components/MetadataCard/MetadataCard";
 import { SummaryCard } from "../components/SummaryCard/SummaryCard";
 import { usePageHeader } from "../../../../hooks/usePageheader";
-import { ScrollSpy } from "../../../../components";
+import { ScrollSpy, useToast } from "../../../../components";
 import { useAvailableHeight } from "../../../../hooks/useAvailableHeight";
 import { Button } from "../../../../components/UI";
 import { useParams } from "react-router-dom";
@@ -24,6 +24,8 @@ interface Props {
 export const BreakdownDetailsView = ({ data }: Props) => {
   const metadata = getMetadata(data);
   const summary = getSummary(data);
+
+  const toast = useToast();
 
   const [isPublishing, setIsPublishing] = useState(false);
 
@@ -41,14 +43,14 @@ export const BreakdownDetailsView = ({ data }: Props) => {
     try {
       setIsPublishing(true);
 
-      await publishBreakdown(Number(breakdownId));
-
-      // TODO:
-      // showSuccessToast("Breakdown pushed to Jira");
-      // invalidate breakdown query if required
+      const { epicsCreated, storiesCreated, subtasksCreated } =
+        await publishBreakdown(Number(breakdownId));
+      toast.success(
+        `Published ${epicsCreated} epic, ${storiesCreated} stories, and ${subtasksCreated} tasks Successfully`,
+      );
     } catch (error) {
       console.error("Failed to publish breakdown", error);
-
+      toast.error("Something went wrong");
       // TODO:
       // showErrorToast("Unable to push breakdown to Jira");
     } finally {

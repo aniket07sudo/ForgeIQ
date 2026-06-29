@@ -73,7 +73,7 @@ export interface BreakdownDetailResponse {
   additionalContext: string;
   status: BreakdownStatus;
   project: ProjectDto;
-  breakdownUrl:string;
+  breakdownUrl: string;
   epicsCount: number;
   totalStoryPoints: number;
   storiesCount: number;
@@ -81,6 +81,15 @@ export interface BreakdownDetailResponse {
   createdBy: string;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface PublishResponse {
+  epicsCreated: number;
+  storiesCreated: number;
+  subtasksCreated: number;
+  epicsSkipped: number;
+  storiesSkipped: number;
+  subtasksSkipped: number;
 }
 
 // const sleep = (ms: number) =>
@@ -113,8 +122,8 @@ export const getBreakdownDetails = async (
 
 export const publishBreakdown = async (
   breakdownId: number,
-): Promise<any> => {
-  const { data } = await api.post<any>(
+): Promise<PublishResponse> => {
+  const { data } = await api.post<PublishResponse>(
     `/api/planning/breakdown/${breakdownId}/push`,
   );
   return data;

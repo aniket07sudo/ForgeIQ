@@ -28,7 +28,7 @@ export const ToastItem = ({ toast, onExited, onClose }: ToastItemProps) => {
       </div>
       <div className={styles.content}>
         <h4 className={styles.title}>{toast.message}</h4>
-        <p className={styles.message}>Description details</p>
+        {/* <p className={styles.message}>Description </p> */}
       </div>
       <button className={styles.close} onClick={() => onClose(toast.id)}>
         <SvgIcon name="cancel" color="#fff" />

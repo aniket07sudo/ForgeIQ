@@ -6,8 +6,8 @@ const ProjectsPage = () => {
   const { data } = useSuspenseQuery<ProjectDto[]>({
     queryKey: ["projects"],
     queryFn: getProjects,
-    staleTime:0,
-    gcTime:0
+    staleTime: 0,
+    gcTime: 0,
   });
 
   return <ProjectDashboard data={data} />;

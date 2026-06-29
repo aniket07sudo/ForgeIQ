@@ -5,6 +5,7 @@ import { Input, Button, Card } from "../../components/UI";
 import logoUrl from "../../assets/images/logo.png";
 import { useAuth } from "../../context/AuthContext";
 import { signup } from "../../api/auth/auth.api";
+import { useToast } from "../../components";
 
 type SignupForm = {
   name: string;
@@ -24,6 +25,7 @@ export default function Signup() {
   const [form, setForm] = useState<SignupForm>(initialState);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const toast = useToast();
 
   const navigate = useNavigate();
   const { login } = useAuth();
@@ -74,6 +76,7 @@ export default function Signup() {
 
         navigate("/");
       } catch (err: any) {
+        toast.error("Something went wrong");
         setError(
           err?.response?.data?.message || "Signup failed. Please try again.",
         );
