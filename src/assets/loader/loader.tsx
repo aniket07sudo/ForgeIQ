@@ -1,4 +1,4 @@
-import styles from "./Loader.module.scss";
+import styles from "./loader.module.scss";
 
 type LoaderProps = {
   size?: number;
@@ -24,18 +24,8 @@ export const Loader = ({
         } as React.CSSProperties
       }
     >
-      <svg
-        className={styles.spinner}
-        viewBox="0 0 50 50"
-        aria-hidden="true"
-      >
-        <circle
-          className={styles.path}
-          cx="25"
-          cy="25"
-          r="20"
-          fill="none"
-        />
+      <svg className={styles.spinner} viewBox="0 0 50 50" aria-hidden="true">
+        <circle className={styles.path} cx="25" cy="25" r="20" fill="none" />
       </svg>
     </span>
   );
