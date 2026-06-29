@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./Sidebar.module.scss";
-import logoUrl from "../../assets/images/logo.png";
+import logoUrl from "../../assets/images/Logo.png";
 import Icon from "../Icon";
 import navRoutes from "../../config/navRoutes";
 

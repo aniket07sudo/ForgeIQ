@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Signup.module.scss";
 import { Input, Button, Card } from "../../components/UI";
-import logoUrl from "../../assets/images/logo.png";
+import logoUrl from "../../assets/images/Logo.png";
 import { useAuth } from "../../context/AuthContext";
 import { signup } from "../../api/auth/auth.api";
 import { useToast } from "../../components";

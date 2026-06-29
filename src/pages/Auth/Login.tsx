@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Login.module.scss";
 import { Input, Button, Card } from "../../components/UI";
-import logoUrl from "../../assets/images/logo.png";
+import logoUrl from "../../assets/images/Logo.png";
 import { useAuth } from "../../context/AuthContext";
 import { useToast } from "../../components";
 
