@@ -9,6 +9,7 @@ import ProtectedLayout from "../layouts/ProtectedLayout/ProtectedLayout";
 
 import navRoutes, { type NavItem } from "../config/navRoutes";
 import PublicRoute from "./PublicRoutes";
+import DemoLogin from "../pages/Auth/DemoLogin";
 
 function renderRoute(item: NavItem) {
   const routes = [];
@@ -39,6 +40,14 @@ export default function AppRoutes() {
   return (
     <Routes>
       {/* PUBLIC ROUTES */}
+      <Route
+        path="/demo"
+        element={
+          <PublicRoute>
+            <DemoLogin />
+          </PublicRoute>
+        }
+      />
       <Route
         path="/login"
         element={

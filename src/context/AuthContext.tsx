@@ -1,12 +1,13 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { getToken, TOKEN_KEY } from "../utils/auth";
-import { getMe, signin, type User } from "../api/auth/auth.api";
+import { demoLogin, getMe, signin, type User } from "../api/auth/auth.api";
 
 type AuthContextType = {
   isAuthenticated: boolean;
   user: any;
   loading: boolean;
   login: (email: string, password: string) => void;
+  demoSignin: () => void;
   logout: () => void;
 };
 
@@ -55,6 +56,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     localStorage.removeItem(TOKEN_KEY);
   };
 
+  const demoSignin = async () => {
+    const { accessToken } = await demoLogin({
+      email: "demo@forgeiq.com",
+      password: "12",
+    });
+
+    localStorage.setItem(TOKEN_KEY, accessToken);
+
+    const user = await getMe();
+    setUser(user);
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -63,6 +76,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         loading,
         login,
         logout,
+        demoSignin,
       }}
     >
       {children}
